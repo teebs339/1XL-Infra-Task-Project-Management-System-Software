@@ -15,7 +15,16 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     const saved = localStorage.getItem('tpms_current_user');
-    return saved ? JSON.parse(saved) : null;
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    // For demo/static deployments, auto-authenticate the first seeded user
+    const users: User[] = JSON.parse(localStorage.getItem('tpms_users') || JSON.stringify(seedUsers));
+    const defaultUser = users.find(u => u.isActive) || users[0] || null;
+    if (defaultUser) {
+      localStorage.setItem('tpms_current_user', JSON.stringify(defaultUser));
+    }
+    return defaultUser;
   });
 
   useEffect(() => {
