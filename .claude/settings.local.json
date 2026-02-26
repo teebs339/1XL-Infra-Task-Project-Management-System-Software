@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create vite@latest . -- --template react-ts)",
+      "Bash(npm install)",
+      "Bash(npm install tailwindcss @tailwindcss/vite react-router-dom recharts date-fns uuid jspdf jspdf-autotable xlsx lucide-react)",
+      "Bash(npm install -D @types/uuid)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx tsc -b --noEmit)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(npx vite build)"
+    ]
+  }
+}
